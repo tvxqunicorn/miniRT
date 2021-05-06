@@ -6,13 +6,13 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:39:47 by xli               #+#    #+#             */
-/*   Updated: 2021/04/21 14:29:43 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 22:22:40 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	get_light_norm_0(t_list *obj_list, t_line *l_line, int have_is)
+static void	get_light_norm_0(t_list *obj_list, t_line *l_line, int *have_is)
 {
 	t_objects	*obj;
 	int			is_amounts;
@@ -27,13 +27,14 @@ static void	get_light_norm_0(t_list *obj_list, t_line *l_line, int have_is)
 		ct = -1;
 		while (++ct < is_amounts)
 		{
+			//printf("%f\n", is_points[ct]);
 			if (is_points[ct] > 0.0 + 1e-6 && is_points[ct] < 1.0 - 1e-6)
 			{
-				have_is = 1;
+				*have_is = 1;
 				break ;
 			}
 		}
-		if (have_is)
+		if (*have_is)
 			break ;
 		obj_list = obj_list->next;
 	}
@@ -42,7 +43,7 @@ static void	get_light_norm_0(t_list *obj_list, t_line *l_line, int have_is)
 /*
 ** l_norm[0]: t_list	*light_list;
 ** l_norm[1]: t_light	*light;
-** l_norm[2]: t_line	*l_line;
+** l_norm[2]: t_line	*l_line;ç
 ** i_norm[0 - 2]: int	result_color[3];
 ** i_norm[3]: int	have_is;
 ** i_norm[4]: int	ct;
@@ -61,7 +62,7 @@ void	get_light(void *p[4], double normal_vector[3], int return_color[3])
 		l_norm[2] = two_points_line(((t_light *)l_norm[1])->coordinate,
 				((t_intersect *)p[1])->coordinate);
 		i_norm[3] = 0;
-		get_light_norm_0(p[2], l_norm[2], 0);
+		get_light_norm_0(p[2], l_norm[2], &i_norm[3]);
 		if (i_norm[3] == 0)
 		{
 			cos = mix_cos(p[3], l_norm[2], normal_vector);
@@ -71,6 +72,12 @@ void	get_light(void *p[4], double normal_vector[3], int return_color[3])
 			while (++i_norm[4] < 3)
 				return_color[i_norm[4]] += i_norm[i_norm[4]];
 		}
+		//if (i_norm[3] == 1)
+		//{
+		//	i_norm[4] = -1;
+		//	while (++i_norm[4] < 3)
+		//		return_color[i_norm[4]] += i_norm[i_norm[4]];
+		//}
 		ft_free(l_norm[2]);
 		l_norm[0] = ((t_list *)l_norm[0])->next;
 	}
