@@ -6,7 +6,7 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 16:24:17 by xli               #+#    #+#             */
-/*   Updated: 2021/05/05 12:06:53 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 21:10:48 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	write_pixel(int fd, t_parse *parse, t_camera *camera)
 				& ((1 << 8) - 1);
 			str[0] = (camera->pixel[ct[0] * parse->rx + ct[1]] >> 0)
 				& ((1 << 8) - 1);
-			write(fd, &(camera->pixel[ct[0] * parse->rx + ct[1]]), 4);
+			write(fd, str, 4);
 		}
 	}
 }
