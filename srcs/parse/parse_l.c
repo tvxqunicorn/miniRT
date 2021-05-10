@@ -6,7 +6,7 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 11:47:16 by xli               #+#    #+#             */
-/*   Updated: 2021/05/10 10:33:27 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/10 13:14:03 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,16 @@
 
 static void	parse_l_norm_0(t_light *light, char *str, int ct)
 {
-	light->brightness = ft_atodouble(&str);
+	double	sign;
+
+	sign = 1.0;
+	while (*str && ft_isdigit(*str) == 0 && *str != '.' && *str != '-')
+		str++;
+	if (*str == 0)
+		error_exit("brightness for light not found\n");
+	if (*str == '-')
+		sign *= -1.0;
+	light->brightness = sign * ft_atodouble(&str);
 	if (light->brightness < 0.0 || light->brightness > 1.0)
 		error_exit("brightness for light out of range\n");
 	while (++ct < 3)
