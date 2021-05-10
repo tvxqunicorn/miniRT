@@ -6,7 +6,7 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 11:10:09 by xli               #+#    #+#             */
-/*   Updated: 2021/04/15 15:11:47 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/10 10:32:18 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	parse_a(t_parse *parse, char *str)
 	ct = -1;
 	while (++ct < 3)
 	{
-		while (*str && ft_isdigit(*str) == 0 && *str != '.')
+		while (*str && ft_isdigit(*str) == 0 && *str != '.' && *str != '-')
 			str++;
 		if (*str == 0)
 			error_exit("ambient light color not found\n");
-		parse->acolor[ct] = (int)ft_atodouble(&str);
+		parse->acolor[ct] = ft_atoi_max(&str);
 		if (parse->acolor[ct] < 0 || parse->acolor[ct] > 255)
 			error_exit("ambient light color invalid\n");
 	}

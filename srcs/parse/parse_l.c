@@ -6,7 +6,7 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 11:47:16 by xli               #+#    #+#             */
-/*   Updated: 2021/04/15 15:11:47 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/10 10:33:27 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	parse_l_norm_0(t_light *light, char *str, int ct)
 			str++;
 		if (*str == 0)
 			error_exit("color for light invalid\n");
-		light->color[ct] = (int)ft_atodouble(&str);
+		light->color[ct] = ft_atoi_max(&str);
 		if (light->color[ct] < 0 || light->color[ct] > 255)
 			error_exit("color for light out of range\n");
 	}
