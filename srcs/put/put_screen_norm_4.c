@@ -6,7 +6,7 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:39:47 by xli               #+#    #+#             */
-/*   Updated: 2021/05/06 22:22:40 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/10 10:35:15 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	get_light_norm_0(t_list *obj_list, t_line *l_line, int *have_is)
 		ct = -1;
 		while (++ct < is_amounts)
 		{
-			//printf("%f\n", is_points[ct]);
 			if (is_points[ct] > 0.0 + 1e-6 && is_points[ct] < 1.0 - 1e-6)
 			{
 				*have_is = 1;
@@ -72,12 +71,6 @@ void	get_light(void *p[4], double normal_vector[3], int return_color[3])
 			while (++i_norm[4] < 3)
 				return_color[i_norm[4]] += i_norm[i_norm[4]];
 		}
-		//if (i_norm[3] == 1)
-		//{
-		//	i_norm[4] = -1;
-		//	while (++i_norm[4] < 3)
-		//		return_color[i_norm[4]] += i_norm[i_norm[4]];
-		//}
 		ft_free(l_norm[2]);
 		l_norm[0] = ((t_list *)l_norm[0])->next;
 	}
