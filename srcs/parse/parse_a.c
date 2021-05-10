@@ -30,6 +30,7 @@ void	parse_a(t_parse *parse, char *str)
 {
 	double	sign;
 
+	sign = 1.0;
 	if (parse->aratio != -1.0 || parse->acolor[0] != -1
 		|| parse->acolor[1] != -1 || parse->acolor[2] != -1)
 		error_exit("define ambient light mutiple times\n");
@@ -37,7 +38,6 @@ void	parse_a(t_parse *parse, char *str)
 		str++;
 	if (*str == 0)
 		error_exit("ambient light ratio not found\n");
-	sign = 1.0;
 	if (*str == '-')
 		sign *= -1.0;
 	parse->aratio = sign * ft_atodouble(&str);
