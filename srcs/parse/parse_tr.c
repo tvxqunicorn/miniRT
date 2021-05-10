@@ -6,7 +6,7 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 10:34:18 by xli               #+#    #+#             */
-/*   Updated: 2021/04/28 14:15:45 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/10 10:29:02 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static void	parse_tr_norm_0(t_triangle *triangle, char *str, int ct)
 {
 	while (++ct < 3)
 	{
-		while (*str && ft_isdigit(*str) == 0 && *str != '.')
+		while (*str && ft_isdigit(*str) == 0 && *str != '.' && *str != '-')
 			str++;
 		if (*str == 0)
 			error_exit("color for triangle is invalid\n");
-		triangle->color[ct] = (int)ft_atodouble(&str);
+		triangle->color[ct] = ft_atoi_max(&str);
 		if (triangle->color[ct] < 0 || triangle->color[ct] > 255)
 			error_exit("color for triangle is out of range\n");
 	}

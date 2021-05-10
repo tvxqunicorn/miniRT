@@ -6,7 +6,7 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 10:29:46 by xli               #+#    #+#             */
-/*   Updated: 2021/04/28 14:16:12 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/10 10:27:47 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ static void	parse_sq_norm_1(t_square *square, char *str, int ct)
 	square->side_size = ft_atodouble(&str);
 	while (++ct < 3)
 	{
-		while (*str && ft_isdigit(*str) == 0 && *str != '.')
+		while (*str && ft_isdigit(*str) == 0 && *str != '.' && *str != '-')
 			str++;
 		if (*str == 0)
 			error_exit("color for square is invalid\n");
-		square->color[ct] = (int)ft_atodouble(&str);
+		square->color[ct] = ft_atoi_max(&str);
 		if (square->color[ct] < 0 || square->color[ct] > 255)
 			error_exit("color for square is out of range\n");
 	}

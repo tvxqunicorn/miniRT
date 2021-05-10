@@ -6,7 +6,7 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 10:28:06 by xli               #+#    #+#             */
-/*   Updated: 2021/04/15 15:11:47 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/10 10:25:27 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static void	parse_sp_norm(t_sphere *sphere, char *str)
 	ct = -1;
 	while (++ct < 3)
 	{
-		while (*str && ft_isdigit(*str) && *str != '.')
+		while (*str && ft_isdigit(*str) == 0 && *str != '.' && *str != '-')
 			str++;
 		if (*str == 0)
 			error_exit("color for sphere invalid\n");
-		sphere->color[ct] = (int)ft_atodouble(&str);
+		sphere->color[ct] = ft_atoi_max(&str);
 		if (sphere->color[ct] < 0 || sphere->color[ct] > 255)
 			error_exit("color for sphere out of range\n");
 	}

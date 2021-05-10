@@ -6,7 +6,7 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 10:30:32 by xli               #+#    #+#             */
-/*   Updated: 2021/05/05 12:10:32 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/10 10:30:30 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static void	parse_cy_norm_1(t_cylinder *cylinder, char *str, int ct)
 {
 	while (++ct < 3)
 	{
-		while (*str && ft_isdigit(*str) && *str != '.')
+		while (*str && ft_isdigit(*str) == 0 && *str != '.' && *str != '-')
 			str++;
 		if (*str == 0)
 			error_exit("color for cylinder invalid\n");
-		cylinder->color[ct] = (int)ft_atodouble(&str);
+		cylinder->color[ct] = ft_atoi_max(&str);
 		if (cylinder->color[ct] < 0 || cylinder->color[ct] > 255)
 			error_exit("color for cylinder out of range\n");
 	}
