@@ -6,7 +6,7 @@
 #    By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 09:46:39 by xli               #+#    #+#              #
-#    Updated: 2021/05/05 14:22:18 by xli              ###   ########lyon.fr    #
+#    Updated: 2021/05/12 12:51:12 by xli              ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ LIB = lib/
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -I $(HEAD)
+
+INCLUDE = includes/bmp.h includes/math_0.h includes/minirt.h includes/parse.h\
+		includes/put.h
 
 FILES = main.c error.c
 

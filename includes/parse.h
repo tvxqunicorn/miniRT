@@ -6,12 +6,15 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 11:39:40 by xli               #+#    #+#             */
-/*   Updated: 2021/04/29 10:17:46 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/12 12:51:00 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
+# ifndef AMBIENT_LIGHT_INTENSITY
+#  define AMBIENT_LIGHT_INTENSITY 0.1
+# endif
 
 typedef struct s_line
 {
