@@ -6,7 +6,7 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:39:47 by xli               #+#    #+#             */
-/*   Updated: 2021/05/12 13:50:39 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/12 14:33:00 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,16 @@ static void	get_light_norm_1(t_info *info, int *return_color)
 }
 
 /*
-** l_norm[0]: t_list	*light_list;
-** l_norm[1]: t_light	*light;
-** l_norm[2]: t_line	*l_line;ç
-** i_norm[0 - 2]: int	result_color[3];
-** i_norm[3]: int	have_is;
-** i_norm[4]: int	ct;
+** l[0]:		t_list	*light_list;
+** l[1]:		t_light	*light;
+** l[2]:		t_line	*l_line;
+** i[0 - 2]:	int	result_color[3];
+** i[3]:		int	have_is;
+** i[4]:		int	ct;
+** p[0]:		info;
+** p[1]:		intersect;
+** p[2]:		obj_list;
+** p[3]:		view_ray;
 */
 
 void	get_light(void *p[4], double normal_vector[3], int return_color[3])
