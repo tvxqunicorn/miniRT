@@ -6,7 +6,7 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:39:47 by xli               #+#    #+#             */
-/*   Updated: 2021/05/12 14:33:00 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/12 15:49:54 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	get_light_norm_0(t_list *obj_list, t_line *l_line, int *have_is)
 		ct = -1;
 		while (++ct < is_amounts)
 		{
-			if (is_points[ct] > 0.0 + 1e-6 && is_points[ct] < 1.0 - 1e-6)
+			if (is_points[ct] >= 0.0 + 1e-6 && is_points[ct] <= 1.0 - 1e-6)
 			{
 				*have_is = 1;
 				break ;

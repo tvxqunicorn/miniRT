@@ -6,7 +6,7 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 11:47:16 by xli               #+#    #+#             */
-/*   Updated: 2021/05/10 13:14:03 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/12 14:39:56 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ static void	parse_l_norm_0(t_light *light, char *str, int ct)
 	}
 }
 
+static void	parse_l_norm_1(t_light *light)
+{
+	int	ct;
+
+	ct = -1;
+	while (++ct < 3)
+		light->color[ct] = (int)((double)light->color[ct] * light->brightness);
+}
+
 void	parse_l(t_parse *parse, char *str)
 {
 	int		ct;
@@ -63,4 +72,5 @@ void	parse_l(t_parse *parse, char *str)
 		light->coordinate[ct] = sign * ft_atodouble(&str);
 	}
 	parse_l_norm_0(light, str, -1);
+	parse_l_norm_1(light);
 }
