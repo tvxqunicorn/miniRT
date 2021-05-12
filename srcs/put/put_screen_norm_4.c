@@ -6,7 +6,7 @@
 /*   By: xli <xli@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:39:47 by xli               #+#    #+#             */
-/*   Updated: 2021/05/10 10:35:15 by xli              ###   ########lyon.fr   */
+/*   Updated: 2021/05/12 13:50:39 by xli              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,16 @@ static void	get_light_norm_0(t_list *obj_list, t_line *l_line, int *have_is)
 	}
 }
 
+static void	get_light_norm_1(t_info *info, int *return_color)
+{
+	int	ct;
+
+	ct = -1;
+	while (++ct < 3)
+		return_color[ct] += (int)((double)info->parse->acolor[ct]
+				* info->parse->aratio * AMBIENT_LIGHT_INTENSITY);
+}
+
 /*
 ** l_norm[0]: t_list	*light_list;
 ** l_norm[1]: t_light	*light;
@@ -50,30 +60,30 @@ static void	get_light_norm_0(t_list *obj_list, t_line *l_line, int *have_is)
 
 void	get_light(void *p[4], double normal_vector[3], int return_color[3])
 {
-	void	*l_norm[3];
-	int		i_norm[5];
+	void	*l[3];
+	int		i[5];
 	double	cos;
 
-	l_norm[0] = ((t_info *)p[0])->parse->light;
-	while (l_norm[0])
+	l[0] = ((t_info *)p[0])->parse->light;
+	while (l[0])
 	{
-		l_norm[1] = ((t_list *)l_norm[0])->content;
-		l_norm[2] = two_points_line(((t_light *)l_norm[1])->coordinate,
+		l[1] = ((t_list *)l[0])->content;
+		l[2] = two_points_line(((t_light *)l[1])->coordinate,
 				((t_intersect *)p[1])->coordinate);
-		i_norm[3] = 0;
-		get_light_norm_0(p[2], l_norm[2], &i_norm[3]);
-		if (i_norm[3] == 0)
+		i[3] = 0;
+		get_light_norm_0(p[2], l[2], &i[3]);
+		if (i[3] == 0)
 		{
-			cos = mix_cos(p[3], l_norm[2], normal_vector);
-			mix(((t_intersect *)p[1])->color, ((t_light *)l_norm[1])->color,
-				i_norm, cos);
-			i_norm[4] = -1;
-			while (++i_norm[4] < 3)
-				return_color[i_norm[4]] += i_norm[i_norm[4]];
+			cos = mix_cos(p[3], l[2], normal_vector);
+			mix(((t_intersect *)p[1])->color, ((t_light *)l[1])->color, i, cos);
+			i[4] = -1;
+			while (++i[4] < 3)
+				return_color[i[4]] += i[i[4]];
 		}
-		ft_free(l_norm[2]);
-		l_norm[0] = ((t_list *)l_norm[0])->next;
+		ft_free(l[2]);
+		l[0] = ((t_list *)l[0])->next;
 	}
+	get_light_norm_1(p[0], return_color);
 	ft_free(p);
 }
 
